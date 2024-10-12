@@ -17,7 +17,13 @@ export default function DragDrop({ content }) {
     <div
       ref={dragRef}
       style={{
-        opacity
+        opacity,
+        width: '100px', // Set fixed width for each dropped content
+        height: '100px', // Set fixed height for each dropped content
+        backgroundColor: 'white', // Visual appearance of dropped items
+        border: '1px solid black',
+        display: 'flex',
+        cursor: 'move'
       }}
     >
       {content}

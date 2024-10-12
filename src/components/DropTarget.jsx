@@ -22,12 +22,13 @@ export default function DropTarget() {
       style={{
         height: '100%',
         width: '100%',
-        backgroundColor: isOver ? 'green' : 'lightgrey',
+        color:'white',
+        backgroundColor: isOver ? '#3c3d37' : '#181C14',
         border: canDrop ? '2px solid black' : '2px dashed grey',
         textAlign: 'start',
         display: 'flex', // Use flexbox to align items
         justifyContent: 'flex-start', // Align items from the start (side by side)
-        alignItems: 'center',
+        // alignItems: 'center',
         gap: '10px', // Add some space between the dropped divs
         padding: '10px', // Add some padding
         flexWrap: 'wrap', // Wrap items if they overflow
@@ -38,15 +39,6 @@ export default function DropTarget() {
         droppedItems.map((item, index) => (
           <div
             key={index}
-            style={{
-              width: '100px', // Set fixed width for each dropped content
-              height: '100px', // Set fixed height for each dropped content
-              backgroundColor: 'lightblue', // Visual appearance of dropped items
-              border: '1px solid black',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
           >
             {item}
           </div>
