@@ -4,6 +4,7 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 import DragDrop from "./components/DragDrop";
 import DropTarget from "./components/DropTarget";
 import "/index.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function App() {
   return (
@@ -15,8 +16,8 @@ export default function App() {
             content={
               <div
                 style={{
-                  width: "100px", // Set fixed width for each dropped content
-                  height: "100px", // Set fixed height for each dropped content
+                  width: "100%", // Set fixed width for each dropped content
+                  height: "100%", // Set fixed height for each dropped content
                   backgroundColor: "white", // Visual appearance of dropped items
                   border: "1px solid black",
                   display: "flex",
@@ -28,7 +29,7 @@ export default function App() {
               </div>
             }
           />
-          <DragDrop
+          {/* <DragDrop
             content={
               <div
                 style={{
@@ -44,7 +45,7 @@ export default function App() {
                 📦 Drag Box 2
               </div>
             }
-          />
+          /> */}
         </div>
         <DropTarget />
       </DndProvider>
