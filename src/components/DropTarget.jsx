@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import { useDrop } from "react-dnd";
 
-export default function DropTarget() {
+export default function DropTarget({ setItemMonitored }) {
   const [droppedItems, setDroppedItems] = useState([]);
 
   const [{ isOver, canDrop }, dropRef] = useDrop(() => ({
     accept: "CARD",
     drop: (item) => {
-      // Add the new dropped item to the array of dropped items
-      setDroppedItems((prevItems) => [...prevItems, item.content]);
+      setDroppedItems((prevItems) => {
+        const newItems = [...prevItems, item.content];
+        setItemMonitored(newItems); // Send updated items to the parent
+        return newItems;
+      });
     },
     collect: (monitor) => ({
       isOver: monitor.isOver(),
@@ -18,9 +21,11 @@ export default function DropTarget() {
 
   // Function to handle removing an item from the droppedItems array
   const handleRemoveItem = (indexToRemove) => {
-    setDroppedItems((prevItems) =>
-      prevItems.filter((_, index) => index !== indexToRemove)
-    );
+    setDroppedItems((prevItems) => {
+      const newItems = prevItems.filter((_, index) => index !== indexToRemove);
+      setItemMonitored(newItems); // Update the parent when items are removed
+      return newItems;
+    });
   };
 
   return (

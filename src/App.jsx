@@ -7,11 +7,31 @@ import "/index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function App() {
+  const [dropTargets, setDropTargets] = useState([{ items: [] }]);
+
+  // Callback function to handle drop events for each DropTarget
+  const handleItemMonitored = (index, items) => {
+    const updatedDropTargets = [...dropTargets];
+    updatedDropTargets[index].items = items;
+    setDropTargets(updatedDropTargets);
+
+    // If the last DropTarget is populated, add a new empty one
+    if (index === dropTargets.length - 1 && items.length > 0) {
+      setDropTargets([...dropTargets, { items: [] }]);
+    }
+  };
+
   return (
     <div style={{ height: "100dvh", width: "100vw", position: "relative" }}>
       <DndProvider backend={HTML5Backend}>
-        {/* Multiple drag sources */}
-        <div style={{ position: "fixed", top: "5px", left:"calc(93% - 9px)", zIndex: 1 }}>
+        <div
+          style={{
+            position: "fixed",
+            top: "5px",
+            left: "calc(93% - 9px)",
+            zIndex: 1,
+          }}
+        >
           <DragDrop
             content={
               <div
@@ -30,9 +50,13 @@ export default function App() {
             }
           />
         </div>
-        <DropTarget />
-        <DropTarget />
-        {/* <DropTarget /> */}
+        {dropTargets.map((target, index) => (
+          <span key={target}>
+            <DropTarget
+              setItemMonitored={(items) => handleItemMonitored(index, items)}
+            />
+          </span>
+        ))}
       </DndProvider>
     </div>
   );
