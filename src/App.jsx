@@ -11,7 +11,7 @@ export default function App() {
     <div style={{ height: "100dvh", width: "100vw", position: "relative" }}>
       <DndProvider backend={HTML5Backend}>
         {/* Multiple drag sources */}
-        <div style={{ position: "absolute", top: "5px", left:"calc(93% - 9px)" }}>
+        <div style={{ position: "fixed", top: "5px", left:"calc(93% - 9px)", zIndex: 1 }}>
           <DragDrop
             content={
               <div
@@ -19,7 +19,7 @@ export default function App() {
                   width: "100%", // Set fixed width for each dropped content
                   height: "100%", // Set fixed height for each dropped content
                   backgroundColor: "white", // Visual appearance of dropped items
-                  border: "1px solid black",
+                  border: "1px solid white",
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
@@ -29,25 +29,10 @@ export default function App() {
               </div>
             }
           />
-          {/* <DragDrop
-            content={
-              <div
-                style={{
-                  width: "100px", // Set fixed width for each dropped content
-                  height: "100px", // Set fixed height for each dropped content
-                  backgroundColor: "white", // Visual appearance of dropped items
-                  border: "1px solid black",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                📦 Drag Box 2
-              </div>
-            }
-          /> */}
         </div>
         <DropTarget />
+        <DropTarget />
+        {/* <DropTarget /> */}
       </DndProvider>
     </div>
   );

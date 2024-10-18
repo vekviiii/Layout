@@ -21,9 +21,10 @@ export default function DragDrop({ content }) {
         width: '100px', // Set fixed width for each dropped content
         height: '100px', // Set fixed height for each dropped content
         backgroundColor: 'white', // Visual appearance of dropped items
-        border: '1px solid black',
+        border: '1px solid white',
         display: 'flex',
-        cursor: 'move'
+        cursor: 'move',
+        fontSize: '12px'
       }}
     >
       {content}
