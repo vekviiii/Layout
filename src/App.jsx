@@ -22,7 +22,7 @@ export default function App() {
   };
 
   return (
-    <div style={{ height: "100dvh", width: "100vw", position: "relative" }}>
+    <div className="main-scroll" style={{ height: "100dvh", width: "100vw", position: "relative" }}>
       <DndProvider backend={HTML5Backend}>
         <div
           style={{
