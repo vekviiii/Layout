@@ -5,6 +5,7 @@ import DragDrop from "./components/DragDrop";
 import DropTarget from "./components/DropTarget";
 import "/index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import ExportModal from "./components/modals/exportModal";
 
 export default function App() {
   const [dropTargets, setDropTargets] = useState([{ items: [] }]);
@@ -22,42 +23,56 @@ export default function App() {
   };
 
   return (
-    <div className="main-scroll" style={{ height: "100dvh", width: "100vw", position: "relative" }}>
-      <DndProvider backend={HTML5Backend}>
-        <div
-          style={{
-            position: "fixed",
-            top: "5px",
-            left: "calc(93% - 9px)",
-            zIndex: 1,
-          }}
-        >
-          <DragDrop
-            content={
-              <div
-                style={{
-                  width: "100%", // Set fixed width for each dropped content
-                  height: "100%", // Set fixed height for each dropped content
-                  backgroundColor: "white", // Visual appearance of dropped items
-                  border: "1px solid white",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                📦 Drag Box 1
-              </div>
-            }
-          />
-        </div>
-        {dropTargets.map((target, index) => (
-          <span key={target}>
-            <DropTarget
-              setItemMonitored={(items) => handleItemMonitored(index, items)}
+    <>
+      <ExportModal data={dropTargets} />
+      <div className="main-scroll" style={{ height: "100dvh", width: "100vw", position: "relative" }}>
+        <DndProvider backend={HTML5Backend}>
+          <div
+            style={{
+              position: "fixed",
+              top: "5px",
+              left: "calc(93% - 9px)",
+              zIndex: 1,
+            }}
+          >
+            <DragDrop
+              content={
+                <div
+                  style={{
+                    width: "100%", // Set fixed width for each dropped content
+                    height: "100%", // Set fixed height for each dropped content
+                    backgroundColor: "white", // Visual appearance of dropped items
+                    border: "1px solid white",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  📦 Drag Box 1
+                </div>
+              }
             />
-          </span>
-        ))}
-      </DndProvider>
-    </div>
+
+            <div className="mt-2" style={{cursor:'pointer'}}>
+              <button
+              type="button"
+              className="btn btn-primary"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+            >
+              Launch demo modal
+            </button>
+            </div>
+          </div>
+          {dropTargets.map((target, index) => (
+            <span key={index}>
+              <DropTarget
+                setItemMonitored={(items) => handleItemMonitored(index, items)}
+              />
+            </span>
+          ))}
+        </DndProvider>
+      </div>
+    </>
   );
 }
