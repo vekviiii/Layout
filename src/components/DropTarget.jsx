@@ -23,7 +23,7 @@ export default function DropTarget({ setItemMonitored }) {
   const handleRemoveItem = (indexToRemove) => {
     setDroppedItems((prevItems) => {
       const newItems = prevItems.filter((_, index) => index !== indexToRemove);
-      // setItemMonitored(newItems); // Update the parent when items are removed
+      setItemMonitored(newItems); // Update the parent when items are removed
       return newItems;
     });
   };

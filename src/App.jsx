@@ -10,17 +10,28 @@ import ExportModal from "./components/modals/exportModal";
 export default function App() {
   const [dropTargets, setDropTargets] = useState([{ items: [] }]);
 
-  // Callback function to handle drop events for each DropTarget
   const handleItemMonitored = (index, items) => {
     const updatedDropTargets = [...dropTargets];
+  
+    // Update the items of the DropTarget at the specified index
     updatedDropTargets[index].items = items;
-    setDropTargets(updatedDropTargets);
-
+  
+    // Remove empty DropTargets, except the last one
+    const filteredDropTargets = updatedDropTargets.filter(
+      (target, i) => target.items.length > 0 || i === updatedDropTargets.length - 1
+    );
+  
     // If the last DropTarget is populated, add a new empty one
-    if (index === dropTargets.length - 1 && items.length > 0) {
-      setDropTargets([...dropTargets, { items: [] }]);
+    if (
+      index === updatedDropTargets.length - 1 &&
+      items.length > 0 &&
+      !filteredDropTargets.some((target) => target.items.length === 0)
+    ) {
+      filteredDropTargets.push({ items: [] });
     }
-  };
+  
+    setDropTargets(filteredDropTargets);
+  };  
 
   return (
     <>
@@ -48,7 +59,7 @@ export default function App() {
                     alignItems: "center",
                   }}
                 >
-                  📦 Drag Box 1
+                  ( content goes here )
                 </div>
               }
             />
