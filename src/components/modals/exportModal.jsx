@@ -6,65 +6,50 @@ const ExportModal = ({ data }) => {
     if (data.length === 0) {
       return "No drop targets available.";
     }
-
-    return `
-  <div
-    class="main-scroll"
-    style="
-      height: 100vh;
-      width: 100vw;
-      position: relative;
-      background-color: #3300ff;
-    "
-  >
+ 
+return `<div
+  class="main-scroll"
+  style="height: 100vh;
+         width: 100vw;
+         position: relative;
+         background-color: #3300ff;">
     ${data
       .map(
-        (target) => `
-          <div
-            style="
-              height: 50%;
-              width: 100%;
-              color: #3300ff;
-              text-align: center;
-              display: flex;
-              justify-content: flex-start;
-              flex-wrap: wrap;
-            "
-          >
-            <div class="row h-100 w-100 position-relative">
+        (target) =>
+          `<div
+      style="height: 50%;
+            width: 100%;
+            color: #3300ff;
+            text-align: center;
+            display: flex;
+            justify-content: flex-start;
+            flex-wrap: wrap;">
+        <div 
+          class="row h-100 w-100 position-relative">
               ${target.items
                 .map(
-                  (item) => `
-                    <div
-                      class="col-md p-1"
-                      style="
-                        padding: 10px;
-                        border: 1px solid white;
-                      "
-                    >
-                      <div
-                        style="
-                          width: 100%;
-                          height: 100%;
-                          background-color: white;
-                          border: 1px solid white;
-                          display: flex;
-                          font-size: 12px;
-                        "
-                      >
+                  (item) =>
+              `<div
+                class="col-md p-1"
+                style="padding: 10px;
+                      border: 1px solid white;">
+                  <div
+                      style="width: 100%;
+                            height: 100%;
+                            background-color: white;
+                            border: 1px solid white;
+                            display: flex;
+                            font-size: 12px;">
                         ${item.props.children}
                       </div>
-                    </div>
-                  `
+                    </div>`
                 )
                 .join("\n")}
             </div>
-          </div>
-        `
+          </div>`
       )
       .join("\n")}
-  </div>
-`;
+  </div>`;
   };
 
   // Function to copy generated HTML to clipboard
@@ -88,7 +73,7 @@ const ExportModal = ({ data }) => {
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
     >
-      <div className="modal-dialog">
+      <div className="modal-dialog modal-dialog-scrollable">
         <div className="modal-content">
           <div className="modal-header">
             <h1 className="modal-title fs-5" id="exampleModalLabel">
